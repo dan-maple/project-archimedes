@@ -29,7 +29,7 @@ namespace CoreApi
             services.AddControllers();
             // Add PostgreSQL support.
             services.AddEntityFrameworkNpgsql()
-                    .AddDbContext<DbContext>(options =>
+                    .AddDbContext<ApiDbContext>(options =>
                         options.UseNpgsql(Configuration.GetConnectionString("DbContext"))
                     );
         }
