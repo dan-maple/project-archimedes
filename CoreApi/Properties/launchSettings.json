@@ -20,7 +20,7 @@
     "CoreApi": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
+      "launchUrl": "api/job",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
