@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 
 namespace CoreApi
 {
@@ -35,7 +36,20 @@ namespace CoreApi
                     );
 
             // Register the Swagger generator.
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version     = "v1",
+                    Title       = "Core API",
+                    Description = "A simple ASP.NET Core Web API backed by a PostgreSQL database.",
+                    Contact     = new OpenApiContact
+                    {
+                        Name    = "Daniel Maple",
+                        Email   = string.Empty
+                    }
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
