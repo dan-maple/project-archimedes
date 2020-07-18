@@ -27,11 +27,15 @@ namespace CoreApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
             // Add PostgreSQL support.
             services.AddEntityFrameworkNpgsql()
                     .AddDbContext<ApiDbContext>(options =>
                         options.UseNpgsql(Configuration.GetConnectionString("DbContext"))
                     );
+
+            // Register the Swagger generator.
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
