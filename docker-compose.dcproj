@@ -8,7 +8,7 @@
     <DockerServiceName>coreapi</DockerServiceName>
   </PropertyGroup>
   <PropertyGroup>
-    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/api/job</DockerServiceUrl>
+    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">
