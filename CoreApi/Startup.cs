@@ -53,6 +53,8 @@ namespace CoreApi
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "Core API V1");
+                // Serve Swagger UI at application root.
+                options.RoutePrefix = string.Empty;
             });
 
             app.UseHttpsRedirection();
