@@ -20,7 +20,6 @@
     "CoreApi": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/job",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
