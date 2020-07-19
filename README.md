@@ -13,3 +13,6 @@ https://intellitect.com/docker-postgresql/
 ### Entity Framework Core Migrations:
 https://www.learnentityframeworkcore.com/migrations
 https://www.entityframeworktutorial.net/efcore/pmc-commands-for-ef-core-migration.aspx
+
+### Swagger (Swashbuckle):
+https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-3.1&tabs=visual-studio
