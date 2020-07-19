@@ -1,4 +1,5 @@
 ﻿using CoreApi.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Linq;
 
 namespace CoreApi.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class JobController : ControllerBase
@@ -23,7 +25,19 @@ namespace CoreApi.Controllers
             _logger  = logger;
         }
 
+        /// <summary>
+        /// Gets all Jobs.
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///     GET /Job
+        /// 
+        /// </remarks>
+        /// <returns>All Jobs.</returns>
+        /// <response code="200">Returns all jobs.</response>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<IEnumerable<Job>> Get()
         {
             List<Job> jobs = _context.Jobs.ToList();
