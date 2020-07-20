@@ -19,6 +19,6 @@ namespace CoreApi.Models
         public string Description { get; set; }
 
         [DefaultValue(JobStatus.Created)]
-        public JobStatus status { get; set; }
+        public JobStatus Status { get; set; }
     }
 }
