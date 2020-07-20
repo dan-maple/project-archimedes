@@ -23,3 +23,5 @@ services:
       - PGADMIN_DEFAULT_PASSWORD=pgadmin
     ports:
       - "4002:80"
+    volumes:
+      - ./pgadmin/servers.json:/pgadmin4/servers.json
