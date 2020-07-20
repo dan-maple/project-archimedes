@@ -1,8 +1,5 @@
 version: '3.4'
 
-volumes:
-  local_postgres_data: {}
-
 services:
   coreapi:
     image: ${DOCKER_REGISTRY-}coreapi
@@ -14,3 +11,16 @@ services:
   
   db:
     image: postgres:11.1
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    depends_on:
+      - db
+
+volumes:
+  db-data:
+  pgadmin-data:

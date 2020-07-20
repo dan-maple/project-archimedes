@@ -16,3 +16,6 @@ https://www.entityframeworktutorial.net/efcore/pmc-commands-for-ef-core-migratio
 
 ### Swagger (Swashbuckle):
 https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-3.1&tabs=visual-studio
+
+### pgAdmin:
+https://www.pgadmin.org/docs/pgadmin4/development/container_deployment.html
