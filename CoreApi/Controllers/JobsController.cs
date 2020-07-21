@@ -1,4 +1,4 @@
-﻿using CoreApi.Models;
+using CoreApi.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -140,6 +140,10 @@ namespace CoreApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Job>> PostJob(Job job)
         {
+            // Prevent certain fields being set.
+            job.Id      = 0;
+            job.Status  = JobStatus.Created;
+
             _context.Jobs.Add(job);
             await _context.SaveChangesAsync();
             
