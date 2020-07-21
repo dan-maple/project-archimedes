@@ -19,3 +19,9 @@ https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swas
 
 ### pgAdmin:
 https://www.pgadmin.org/docs/pgadmin4/development/container_deployment.html
+
+### Azure Active Directory
+https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-protect-backend-with-aad
+
+#### IndentityServer4
+https://identityserver.io/
