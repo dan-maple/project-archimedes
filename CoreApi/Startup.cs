@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -23,8 +24,6 @@ namespace CoreApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-
             // Add PostgreSQL support.
             services.AddEntityFrameworkNpgsql()
                     .AddDbContext<ApiDbContext>(options =>
@@ -51,6 +50,10 @@ namespace CoreApi
                 string xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 options.IncludeXmlComments(xmlPath);
             });
+
+            services.AddAutoMapper(typeof(Startup));
+
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
