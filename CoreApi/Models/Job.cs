@@ -20,5 +20,7 @@ namespace CoreApi.Models
 
         [DefaultValue(JobStatus.Created)]
         public JobStatus Status { get; set; }
+
+        public double Cost { get; set; }
     }
 }
