@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using CoreApi.Dtos;
 using CoreApi.Models;
 
@@ -11,8 +11,8 @@ namespace CoreApi.Profiles
         /// </summary>
         public JobProfile()
         {
-            CreateMap<Job, JobDto>();
-            CreateMap<Job, JobUpdateDto>();
+            CreateMap<Job, JobDto>().ReverseMap();
+            CreateMap<Job, JobUpdateDto>().ReverseMap();
         }
     }
 }
