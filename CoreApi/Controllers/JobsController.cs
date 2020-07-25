@@ -1,3 +1,5 @@
+using AutoMapper;
+using CoreApi.Dtos;
 using CoreApi.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,15 +17,18 @@ namespace CoreApi.Controllers
     public class JobsController : ControllerBase
     {
         private readonly ApiDbContext               _context;
+        private readonly IMapper                    _mapper;
         private readonly ILogger<JobsController>    _logger;
 
         public JobsController
         (
             ApiDbContext            context,
+            IMapper                 mapper,
             ILogger<JobsController> logger
         )
         {
             _context = context;
+            _mapper  = mapper;
             _logger  = logger;
         }
 
@@ -40,11 +45,13 @@ namespace CoreApi.Controllers
         /// <response code="200">Returns all jobs.</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<Job>>> GetJobs()
+        public async Task<ActionResult<IEnumerable<JobDto>>> GetJobs()
         {
-            List<Job> jobs = await _context.Jobs.ToListAsync();
+            List<Job>    jobs    = await _context.Jobs.ToListAsync();
+            List<JobDto> jobDtos = _mapper.Map<List<Job>, List<JobDto>>(jobs);
             _logger.LogInformation($"Retrieved {jobs.Count} jobs.");
-            return jobs;
+
+            return jobDtos;
         }
 
         /// <summary>
@@ -62,7 +69,7 @@ namespace CoreApi.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Job>> GetJob(long id)
+        public async Task<ActionResult<JobDto>> GetJob(long id)
         {
             Job job = await _context.Jobs.FindAsync(id);
 
@@ -72,11 +79,11 @@ namespace CoreApi.Controllers
                 return NotFound();
             }
 
-            return job;
+            JobDto jobDto = _mapper.Map<JobDto>(job);
+
+            return jobDto;
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         /// <summary>
         /// Updates a job.
         /// </summary>
@@ -92,9 +99,11 @@ namespace CoreApi.Controllers
         /// 
         /// </remarks>
         /// <response code="204">Returns nothing.</response>
+        /// <response code="400">If ID and job ID do not match.</response>
         /// <response code="404">If the job is not found.</response>
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> PutJob(long id, Job job)
         {
@@ -117,8 +126,6 @@ namespace CoreApi.Controllers
             return NoContent();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         /// <summary>
         /// Creates a job.
         /// </summary>
@@ -138,7 +145,7 @@ namespace CoreApi.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Job>> PostJob(Job job)
+        public async Task<ActionResult<JobDto>> PostJob(Job job)
         {
             // Prevent certain fields being set.
             job.Id      = 0;
@@ -146,8 +153,10 @@ namespace CoreApi.Controllers
 
             _context.Jobs.Add(job);
             await _context.SaveChangesAsync();
+
+            JobDto jobDto = _mapper.Map<JobDto>(job);
             
-            return CreatedAtAction(nameof(GetJob), new { id = job.Id }, job);
+            return CreatedAtAction(nameof(GetJob), new { id = job.Id }, jobDto);
         }
 
         /// <summary>
