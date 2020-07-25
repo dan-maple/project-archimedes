@@ -20,6 +20,13 @@ https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swas
 ### pgAdmin:
 https://www.pgadmin.org/docs/pgadmin4/development/container_deployment.html
 
+### Data Transfer Objects (DTOs)
+https://docs.microsoft.com/en-us/aspnet/web-api/overview/data/using-web-api-with-entity-framework/part-5
+
+#### Automapper
+https://docs.automapper.org/en/latest/index.html
+https://code-maze.com/automapper-net-core/
+
 ### Azure Active Directory
 https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-protect-backend-with-aad
 
